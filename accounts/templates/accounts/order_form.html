@@ -1,0 +1,17 @@
+{% extends 'accounts/main.html' %}
+
+{% block body %}
+<br>
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <h2 class="text-center">{{ method }} Order</h2>
+    <div class="card card-body text-center">
+      <form class="" action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-warning" type="submit" name="button">{{ method }}</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

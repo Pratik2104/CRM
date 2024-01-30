@@ -1,0 +1,42 @@
+{% extends 'accounts/main.html' %}
+
+{% block body %}
+
+{% include 'accounts/status.html' %}
+
+<br>
+<div class="row">
+  <div class="col-md-7">
+    <h5>RECENT ORDERS</h5>
+    <hr>
+    <div class="card card-body">
+      <table class="table table-sm">
+        <tr>
+          <th>Product</th>
+          <th>Date Ordered</th>
+          <th>Status</th>
+        </tr>
+        <tr><th></th></tr>
+
+        {% for order in orders %}
+            <tr>
+              <td>
+                {% for product in order.product.all %}
+                    {{ product.name }}
+                    <!-- {% if not forloop.last %}, {% endif %} -->
+                    <br>
+                {% endfor %}
+              </td>
+              <td>{{ order.date_created }}</td>
+              <td>{{ order.status }}</td>
+            </tr>
+            <tr><th></th></tr>
+        {% endfor %}
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

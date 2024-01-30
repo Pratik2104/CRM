@@ -1,0 +1,42 @@
+{% extends 'users/main.html' %}
+{% block content %}
+    <br>
+    <br>
+    <div class="container" >
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card text-center text-white bg-dark border-0 mb-3">
+                    <div class="card-header text-white bg-info">
+                        <div class="card-title">
+                          <h4>REGISTER ACCOUNT</h4>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% for field in register_form %}
+                                <div class="form-group">
+                                  <div class="row text-left">
+                                    <div class="col-md-5 offset-md-1">
+                                      {{ field.label }} :
+                                    </div>
+                                    <div class="col-md-6">
+                                      {{ field }}
+                                    </div>
+                                  </div>
+                                </div>
+                            {% endfor %}
+                            <br>
+                            <button class="btn btn-info" type="submit">Register</button>
+                            <br>
+                            <p>{{ register_form.errors }}</p>
+                            <br>
+                            <p>Already have an account? <a href="{% url 'login' %}"> Login</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  {% endblock %}

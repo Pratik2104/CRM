@@ -1,0 +1,48 @@
+{% extends 'accounts/main.html' %}
+{% block body %}
+<style>
+  .profile-pic{
+      max-width: 200px;
+      max-height: 200px;
+      margin: 0 auto;
+      border-radius: 50%;
+  }
+</style>
+    <br>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card card-body">
+          <a href="{% url 'home' %}" class="btn btn-warning"><---  Back to Profile</a>
+          <hr>
+          <h3 style="text-align: center">Account Settings</h3>
+          <hr>
+          <img class="profile-pic" src="{{ customer.profile_pic.url }}" alt="">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-body border-0 mb-3">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="form-group">
+                  {% for field in profile_form %}
+                  <div class="row">
+                    <div class="col-md-2 offset-md-1">
+                      {{ field.label }} :
+                    </div>
+                    <div class="col-md-9">
+                      {{ field }}
+                    </div>
+                  </div>
+                  <br>
+                  {% endfor %}
+                  <div class="row justify-content-center">
+                    <div class="col-md-4">
+                      <button class="btn btn-warning" type="submit" name="button">Update Profile</button>
+                    </div>
+                  </div>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div>
+{% endblock %}
